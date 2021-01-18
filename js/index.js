@@ -19,6 +19,7 @@ let state = {
   glutenFreeCrust: false
 };
 
+
 // This function takes care of rendering the pizza based on the state
 // This function is triggered once at the beginning and every time the state is changed
 function renderEverything() {
@@ -78,27 +79,23 @@ function renderWhiteSauce() {
 
 function renderGlutenFreeCrust() {
   // Iteration 2: add/remove the class "crust-gluten-free" of `<section class="crust">`
-  const crust = document.querySelectorAll('.crust');
+  const crust = document.querySelector('.crust');
   if (state.glutenFreeCrust) {
-    crust[0].classList.add('crust-gluten-free');
+    crust.classList.add('crust-gluten-free');
   } else {
-    crust[0].classList.remove('crust-gluten-free');
+    crust.classList.remove('crust-gluten-free');
   }
 }
 
 
 function renderButtons() {
   // Iteration 3: add/remove the class "active" of each `<button class="btn">`
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(button => {
-    // if ingrendient active
-    if (state.button) {
-      button.classList.add('active');
-    } else {     // if ingrendient inactive
-      button.classList.remove('active');
+  let buttons = document.getElementsByClassName('btn');
+  for (let button of buttons) {
+    button.onclick = function () {
+      button.classList.toggle('active');
     }
-  });
-  console.log(buttons);
+  }
 }
 
 function renderPrice() {
